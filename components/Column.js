@@ -10,16 +10,18 @@ export default function Column({ id, title, applications, onView }) {
     const colors = STATUS_COLORS[id] || STATUS_COLORS.applied;
 
     return (
-        <div className="flex-1 min-w-[260px]">
-            <div className="flex items-center gap-2 mb-3 px-1">
+        <div className="flex-1 min-w-[270px]">
+            <div className={`flex items-center gap-2 mb-3 px-3 py-2 rounded-lg ${colors.bgTint}`}>
                 <span className={`w-2 h-2 rounded-full ${colors.dot}`} />
-                <h2 className="text-sm font-semibold text-gray-700">{title}</h2>
-                <span className="text-xs text-gray-400 ml-auto">{applications.length}</span>
+                <h2 className={`text-sm font-semibold ${colors.text}`}>{title}</h2>
+                <span className={`text-xs ml-auto font-medium ${colors.text} opacity-70`}>
+                    {applications.length}
+                </span>
             </div>
 
             <div
                 ref={setNodeRef}
-                className={`rounded-lg p-2 min-h-[200px] transition-colors ${isOver ? "bg-blue-50" : "bg-gray-50"
+                className={`rounded-xl p-2 min-h-[240px] transition-colors ${isOver ? "bg-black/[0.03]" : ""
                     }`}
             >
                 <SortableContext items={applications.map((a) => a.id)} strategy={verticalListSortingStrategy}>
@@ -29,7 +31,10 @@ export default function Column({ id, title, applications, onView }) {
                 </SortableContext>
 
                 {applications.length === 0 && (
-                    <p className="text-xs text-gray-400 text-center py-6">No applications</p>
+                    <div className="text-center py-10">
+                        <p className="text-2xl mb-1 opacity-40">◌</p>
+                        <p className="text-xs text-[#9B9791]">No applications</p>
+                    </div>
                 )}
             </div>
         </div>

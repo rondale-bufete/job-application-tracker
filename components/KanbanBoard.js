@@ -14,6 +14,7 @@ import ApplicationCard from "./ApplicationCard";
 import AddApplicationModal from "./AddApplicationModal";
 import ApplicationDetailModal from "./ApplicationDetailModal";
 import { updateApplicationStatus } from "@/lib/applications";
+import { STATUS_COLORS } from "@/lib/statusColors";
 
 const COLUMNS = [
     { id: "applied", title: "Applied" },
@@ -30,9 +31,7 @@ export default function KanbanBoard({ initialApplications }) {
 
     const sensors = useSensors(
         useSensor(PointerSensor, {
-            activationConstraint: {
-                distance: 8, // require 8px of movement before a drag starts, so clicks still work
-            },
+            activationConstraint: { distance: 8 },
         })
     );
 
@@ -59,7 +58,6 @@ export default function KanbanBoard({ initialApplications }) {
 
         if (!newStatus || newStatus === activeApp.status) return;
 
-        // Optimistic update
         setApplications((prev) =>
             prev.map((app) => (app.id === activeApp.id ? { ...app, status: newStatus } : app))
         );
@@ -67,7 +65,6 @@ export default function KanbanBoard({ initialApplications }) {
         try {
             await updateApplicationStatus(activeApp.id, newStatus);
         } catch (err) {
-            // Revert on failure
             setApplications((prev) =>
                 prev.map((app) => (app.id === activeApp.id ? { ...app, status: activeApp.status } : app))
             );
@@ -90,12 +87,29 @@ export default function KanbanBoard({ initialApplications }) {
     const activeApp = applications.find((a) => a.id === activeId);
 
     return (
-        <div className="p-6">
-            <div className="flex justify-between items-center mb-6">
-                <p className="text-sm text-gray-500">{applications.length} total applications</p>
+        <div className="p-6 max-w-7xl mx-auto">
+            <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+                <div className="flex gap-3">
+                    {COLUMNS.map((col) => {
+                        const colors = STATUS_COLORS[col.id];
+                        const count = getColumnApplications(col.id).length;
+                        return (
+                            <div
+                                key={col.id}
+                                className={`px-4 py-2.5 rounded-xl ${colors.bgTint} min-w-[90px]`}
+                            >
+                                <p className={`text-xl font-semibold font-[family-name:var(--font-display)] ${colors.text}`}>
+                                    {count}
+                                </p>
+                                <p className={`text-xs ${colors.text} opacity-70`}>{col.title}</p>
+                            </div>
+                        );
+                    })}
+                </div>
+
                 <button
                     onClick={() => setShowAddModal(true)}
-                    className="px-4 py-2 rounded-md bg-gray-900 text-white text-sm font-medium hover:bg-blue-600 transition-colors"
+                    className="px-4 py-2.5 rounded-xl bg-[#1C1B1A] text-white text-sm font-medium hover:bg-[#4F46E5] transition-colors"
                 >
                     + Add Application
                 </button>
