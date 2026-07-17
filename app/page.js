@@ -19,7 +19,7 @@ export default async function Home() {
     .order("created_at", { ascending: false });
 
   return (
-    <main className="min-h-screen bg-[#FAFAFA]">
+    <main className="min-h-screen bg-[#121113]">
       <Navbar userEmail={user.email} />
       <KanbanBoard initialApplications={applications || []} />
     </main>

@@ -19,7 +19,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`}>
-      <body className="bg-[#F7F6F3] text-[#1C1B1A] font-[family-name:var(--font-body)] antialiased">
+      <body className="bg-[#121113] text-[#F4F3F1] font-[family-name:var(--font-body)] antialiased">
         {children}
       </body>
     </html>

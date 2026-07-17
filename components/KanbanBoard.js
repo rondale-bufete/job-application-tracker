@@ -94,10 +94,7 @@ export default function KanbanBoard({ initialApplications }) {
                         const colors = STATUS_COLORS[col.id];
                         const count = getColumnApplications(col.id).length;
                         return (
-                            <div
-                                key={col.id}
-                                className={`px-4 py-2.5 rounded-xl ${colors.bgTint} min-w-[90px]`}
-                            >
+                            <div key={col.id} className={`px-4 py-2.5 rounded-xl ${colors.bgTint} min-w-[90px]`}>
                                 <p className={`text-xl font-semibold font-[family-name:var(--font-display)] ${colors.text}`}>
                                     {count}
                                 </p>
@@ -109,7 +106,7 @@ export default function KanbanBoard({ initialApplications }) {
 
                 <button
                     onClick={() => setShowAddModal(true)}
-                    className="px-4 py-2.5 rounded-xl bg-[#1C1B1A] text-white text-sm font-medium hover:bg-[#4F46E5] transition-colors"
+                    className="px-4 py-2.5 rounded-xl bg-[#818CF8] text-[#121113] text-sm font-medium hover:bg-[#a5b0f9] transition-colors"
                 >
                     + Add Application
                 </button>

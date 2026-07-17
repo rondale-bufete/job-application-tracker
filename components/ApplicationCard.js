@@ -25,7 +25,7 @@ export default function ApplicationCard({ application, onView }) {
             {...attributes}
             {...listeners}
             onClick={() => onView(application)}
-            className={`bg-white border border-l-4 ${colors.border} border-black/5 rounded-xl p-4 mb-3 cursor-grab active:cursor-grabbing hover:shadow-md hover:shadow-black/5 hover:-translate-y-0.5 transition-all duration-200`}
+            className={`bg-[#1C1B1E] border border-l-4 ${colors.border} border-white/[0.06] rounded-xl p-4 mb-3 cursor-grab active:cursor-grabbing hover:shadow-lg hover:shadow-black/30 hover:-translate-y-0.5 transition-all duration-200`}
         >
             <div className="flex items-start gap-3">
                 <div
@@ -34,20 +34,20 @@ export default function ApplicationCard({ application, onView }) {
                     {initial}
                 </div>
                 <div className="min-w-0 flex-1">
-                    <h3 className="font-medium text-sm truncate">{application.company}</h3>
-                    <p className="text-sm text-[#6B6862] mt-0.5 truncate">{application.role}</p>
+                    <h3 className="font-medium text-sm truncate text-[#F4F3F1]">{application.company}</h3>
+                    <p className="text-sm text-[#A29E97] mt-0.5 truncate">{application.role}</p>
                 </div>
             </div>
 
             <div className="flex items-center justify-between mt-3 pl-12">
-                <p className="text-xs text-[#9B9791]">
+                <p className="text-xs text-[#6E6A64]">
                     {new Date(application.date_applied).toLocaleDateString(undefined, {
                         month: "short",
                         day: "numeric",
                     })}
                 </p>
                 {application.job_description && (
-                    <span className="text-xs text-[#9B9791]" title="Has job description">
+                    <span className="text-xs text-[#6E6A64]" title="Has job description">
                         📄
                     </span>
                 )}

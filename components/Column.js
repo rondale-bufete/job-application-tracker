@@ -21,7 +21,7 @@ export default function Column({ id, title, applications, onView }) {
 
             <div
                 ref={setNodeRef}
-                className={`rounded-xl p-2 min-h-[240px] transition-colors ${isOver ? "bg-black/[0.03]" : ""
+                className={`rounded-xl p-2 min-h-[240px] transition-colors ${isOver ? "bg-white/[0.03]" : ""
                     }`}
             >
                 <SortableContext items={applications.map((a) => a.id)} strategy={verticalListSortingStrategy}>
@@ -32,8 +32,8 @@ export default function Column({ id, title, applications, onView }) {
 
                 {applications.length === 0 && (
                     <div className="text-center py-10">
-                        <p className="text-2xl mb-1 opacity-40">◌</p>
-                        <p className="text-xs text-[#9B9791]">No applications</p>
+                        <p className="text-2xl mb-1 opacity-30">◌</p>
+                        <p className="text-xs text-[#6E6A64]">No applications</p>
                     </div>
                 )}
             </div>
