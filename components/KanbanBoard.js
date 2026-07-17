@@ -6,6 +6,8 @@ import {
     DragOverlay,
     closestCorners,
     PointerSensor,
+    TouchSensor,
+    MouseSensor,
     useSensor,
     useSensors,
 } from "@dnd-kit/core";
@@ -30,8 +32,11 @@ export default function KanbanBoard({ initialApplications }) {
     const [viewingApp, setViewingApp] = useState(null);
 
     const sensors = useSensors(
-        useSensor(PointerSensor, {
+        useSensor(MouseSensor, {
             activationConstraint: { distance: 8 },
+        }),
+        useSensor(TouchSensor, {
+            activationConstraint: { delay: 200, tolerance: 8 },
         })
     );
 

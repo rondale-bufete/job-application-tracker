@@ -13,6 +13,7 @@ export default function ApplicationCard({ application, onView }) {
         transform: CSS.Transform.toString(transform),
         transition,
         opacity: isDragging ? 0.5 : 1,
+        touchAction: "none",
     };
 
     const colors = STATUS_COLORS[application.status] || STATUS_COLORS.applied;
