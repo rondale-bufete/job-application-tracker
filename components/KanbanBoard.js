@@ -87,18 +87,18 @@ export default function KanbanBoard({ initialApplications }) {
     const activeApp = applications.find((a) => a.id === activeId);
 
     return (
-        <div className="p-6 max-w-7xl mx-auto">
-            <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-                <div className="flex gap-3">
+        <div className="p-4 sm:p-6 max-w-7xl mx-auto">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+                <div className="grid grid-cols-4 sm:flex gap-2 sm:gap-3">
                     {COLUMNS.map((col) => {
                         const colors = STATUS_COLORS[col.id];
                         const count = getColumnApplications(col.id).length;
                         return (
-                            <div key={col.id} className={`px-4 py-2.5 rounded-xl ${colors.bgTint} min-w-[90px]`}>
-                                <p className={`text-xl font-semibold font-[family-name:var(--font-display)] ${colors.text}`}>
+                            <div key={col.id} className={`px-2.5 sm:px-4 py-2 sm:py-2.5 rounded-xl ${colors.bgTint} text-center sm:text-left sm:min-w-[90px]`}>
+                                <p className={`text-lg sm:text-xl font-semibold font-[family-name:var(--font-display)] ${colors.text}`}>
                                     {count}
                                 </p>
-                                <p className={`text-xs ${colors.text} opacity-70`}>{col.title}</p>
+                                <p className={`text-[10px] sm:text-xs ${colors.text} opacity-70 truncate`}>{col.title}</p>
                             </div>
                         );
                     })}
@@ -106,7 +106,7 @@ export default function KanbanBoard({ initialApplications }) {
 
                 <button
                     onClick={() => setShowAddModal(true)}
-                    className="px-4 py-2.5 rounded-xl bg-[#818CF8] text-[#121113] text-sm font-medium hover:bg-[#a5b0f9] transition-colors"
+                    className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-[#818CF8] text-[#121113] text-sm font-medium hover:bg-[#a5b0f9] transition-colors"
                 >
                     + Add Application
                 </button>
@@ -118,7 +118,7 @@ export default function KanbanBoard({ initialApplications }) {
                 onDragStart={handleDragStart}
                 onDragEnd={handleDragEnd}
             >
-                <div className="flex gap-4 overflow-x-auto pb-4">
+                <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0">
                     {COLUMNS.map((col) => (
                         <Column
                             key={col.id}

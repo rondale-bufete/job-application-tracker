@@ -10,7 +10,7 @@ export default function Column({ id, title, applications, onView }) {
     const colors = STATUS_COLORS[id] || STATUS_COLORS.applied;
 
     return (
-        <div className="flex-1 min-w-[270px]">
+        <div className="flex-1 min-w-[85vw] sm:min-w-[270px] snap-center">
             <div className={`flex items-center gap-2 mb-3 px-3 py-2 rounded-lg ${colors.bgTint}`}>
                 <span className={`w-2 h-2 rounded-full ${colors.dot}`} />
                 <h2 className={`text-sm font-semibold ${colors.text}`}>{title}</h2>

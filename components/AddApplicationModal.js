@@ -34,7 +34,7 @@ export default function AddApplicationModal({ onClose, onAdded }) {
     }
 
     return (
-        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4" onClick={onClose}>
+        <div className="bg-[#1C1B1E] border border-white/[0.08] rounded-xl shadow-2xl max-w-md w-full p-5 sm:p-6 max-h-[85vh] overflow-y-auto" onClick={onClose}>
             <div
                 className="bg-[#1C1B1E] border border-white/[0.08] rounded-xl shadow-2xl max-w-md w-full p-6 max-h-[85vh] overflow-y-auto"
                 onClick={(e) => e.stopPropagation()}
