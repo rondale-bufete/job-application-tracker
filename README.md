@@ -1,36 +1,21 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Job Application Tracker
 
-## Getting Started
+A Supabase-backed job-search workspace for tracking applications, follow-ups, interview notes, and pipeline status.
 
-First, run the development server:
+## Run locally
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Install dependencies with `npm install`.
+2. Set `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` in `.env.local`.
+3. Run `npm run dev` and open [http://localhost:3000](http://localhost:3000).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Database setup
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+The app expects an existing `public.applications` table with UUID `id` and `user_id` columns, plus `company`, `role`, `status`, `date_applied`, `job_description`, and `created_at`. The `status` values used by the app are `applied`, `interview`, `offer`, and `rejected`. Enable row-level security and ensure application policies restrict reads and writes to the authenticated owner.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Apply `supabase/migrations/20261121000000_add_application_workflow.sql` to add job details, follow-up tasks, activity history, indexes, and owner-scoped policies. Run the migration using the Supabase CLI if your project is linked, or execute the SQL in the Supabase SQL Editor.
 
-## Learn More
+## Checks
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `npm run lint`
+- `node --test lib/application-utils.test.mjs`
+- `npm run build`
